@@ -10,10 +10,7 @@
     <h3>Recent Posts</h3>
     <ul>
         @foreach($recentPosts as $post)
-        <li>{{link_to_route('post.show',$post->title,$post-id)}}</li>
+        <li>{{link_to_route('post.show',$post->title,$post->id)}}</li>
         @endforeach
-    </ul>
-    
-    
-    
+    </ul>    
 </div>

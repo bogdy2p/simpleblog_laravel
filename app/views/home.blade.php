@@ -6,6 +6,6 @@
 </div>
 <div class="small-4 large-4 column">
     <aside class="sidebar">
-     
+        @include('sidebar')
     </aside>
 </div>
