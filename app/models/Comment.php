@@ -15,5 +15,15 @@ class Comment extends Eloquent {
 
         return $this->belongsTo('Post');
     }
+    
+    public function getApprovedAttribute($approved)
+    {
+        return (intval($approved) == 1) ? 'yes' : 'no';
+    }
+
+    public function setApprovedAttribute($approved)
+    {
+        $this->attributes['approved'] = ($approved === 'yes') ? 1 : 0;
+    }
 
 }
