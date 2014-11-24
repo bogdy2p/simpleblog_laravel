@@ -10,8 +10,16 @@ class CommentController extends BaseController {
     }
 
     public function newComment() {
-        $comment = [];
-        $rules = [];
+        $comment = [
+            'commenter' => Input::get('commenter'),
+            'email' => Input::get('email'),
+            'comment' => Input::get('comment'),  
+        ];
+        $rules = [
+            'commenter'=>'required',
+            'email'=>'required | email',
+            'comment'=>'required',
+        ];
         $valid = Validator::make($comment, $rules);
         if ($valid->passes()) {
             $comment = new Comment($comment);
