@@ -1,8 +1,5 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<p><b>Commenter:</b> {{{$comment->commenter}}}</p>
+<p><b>Email:</b> {{{$comment->email}}}</p>
+<p><b>Comment:</b></p>
+<p>{{{$comment->comment}}}</p>
+<a class="close-reveal-modal">&#215;</a>
