@@ -17,25 +17,41 @@ class BlogController extends BaseController {
 
     public function getSearch() {
         $searchTerm = Input::get('s');
-        $posts = Post::whereRaw('match(title,content) against(? in boolean mode)',[$searchTerm])->paginate(10);
+        $posts = Post::whereRaw('match(title,content) against(? in boolean mode)', [$searchTerm])->paginate(10);
         $posts->getFactory->setViewName('pagination::slider');
-        $posts->appends(['s'=>$searchTerm]);
-        $this->layout->with('title','Search: '.$searchTerm);
+        $posts->appends(['s' => $searchTerm]);
+        $this->layout->with('title', 'Search: ' . $searchTerm);
         $this->layout->main = View::make('home')
-                     ->nest('content','index',($posts->isEmpty()) ? ['notFound' => true] : compact('posts'));
+                ->nest('content', 'index', ($posts->isEmpty()) ? ['notFound' => true] : compact('posts'));
     }
 
-    public function getLogin()
-    {
-        $this->layout->title='login';
+    public function getLogin() {
+        $this->layout->title = 'login';
         $this->layout->main = View::make('login');
     }
-    
-    public function postLogin()
-    {
+
+    public function postLogin() {
         $credentials = [
             'username' => Input::get('username'),
-            'password' => Input::get('password')         
+            'password' => Input::get('password')
         ];
+        $rules = [
+            'username' => 'required',
+            'password' => 'required'
+        ];
+
+        $validator = Validator::make($credentials, $rules);
+        if ($validator->passes()) {
+            if (Auth::attempt($credentials))
+                return Redirect::to('admin/dash-board');
+            return Redirect::back()->withInput()->with('failure', 'username or password is invalid!');
+        }
+        else {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+    }
+    public function getLogout(){
+        Auth::logout();
+        return Redirect::to('/');
     }
 }
