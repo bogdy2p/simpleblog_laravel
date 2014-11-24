@@ -1,6 +1,6 @@
 <?php
 
-class PostControler extends BaseController {
+class PostController extends BaseController {
     /* functii get */
 
     public function listPost() {
