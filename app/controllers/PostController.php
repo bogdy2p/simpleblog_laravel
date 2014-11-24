@@ -55,8 +55,14 @@ class PostController extends BaseController {
     }
 
     public function updatePost(Post $post) {
-        $data = [];
-        $rules = [];
+        $data = [
+            'title' => Input::get('title'),
+            'content' => Input::get('content'),
+        ];
+        $rules = [
+            'title' => 'required',
+            'content' => 'required',
+        ];
         $valid = Validator::make($data, $rules);
         if ($valid->passes()) {
             $post->title = $data['title'];
