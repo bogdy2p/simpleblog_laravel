@@ -28,7 +28,7 @@
                                 </ul>
                                 <ul class="right">
                                     @if(Auth::check())
-                                    <li class="{{ (strpos(URL::current(), URL::to('admin/dash-board'))!== false) ? 'active' : ''}}">{{HTML::limk('admin/dash-board','Dashboard')}}</li>
+                                    <li class="{{ (strpos(URL::current(), URL::to('admin/dash-board'))!== false) ? 'active' : ''}}">{{HTML::link('admin/dash-board','Dashboard')}}</li>
                                     <li class="{{ (strpos(URL::current(), URL::to('logout'))!== false) ? 'active': ''}}">{{HTML::link('logout','Logout')}}</li>
                                     @else
                                     <li class="{{ (strpos(URL::current(), URL::to('login'))!== false) ? 'active': ''}}">{{HTML::link('login','Login')}}></li>

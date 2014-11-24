@@ -2,7 +2,7 @@
     <aside class="sidebar">
         <h3>Menu</h3>
         <ul>
-            <li>{{HTML::linl('/','Home')}}</li>
+            <li>{{HTML::link('/','Home')}}</li>
             <li class="divider"></li>
             <li class="{{ (strpos(URL::current(),route('post.new'))!== false)? 'active' : ''}}">
                 {{HTML::linkRoute('post.new','New Post')}}

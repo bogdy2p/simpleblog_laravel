@@ -4,7 +4,7 @@ class PostController extends BaseController {
     /* functii get */
 
     public function listPost() {
-        $posts = Post::orderB('id', 'desc')->paginate(10);
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         $this->layout->title = 'Post listings';
         $this->layout->main = View::make('dash')->nest('content', 'posts.list', compact('posts'));
     }
