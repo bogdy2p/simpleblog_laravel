@@ -33,24 +33,44 @@ class PostControler extends BaseController {
     /* functii post */
 
     public function savePost() {
-        $post = [];
-        $rules = [];
-        $valid = Validator::make($post,$rules);
-        
-        if ($valid->passes()){
+        $post = [
+            'title' => Input::get('title'),
+            'content' => Input::get('content'),
+        ];
+        $rules = [
+            'title' => 'required',
+            'content' => 'required',
+        ];
+        $valid = Validator::make($post, $rules);
+
+        if ($valid->passes()) {
             $post = new Post($post);
             $post->comment_count = 0;
             $post->read_more = (strlen($post->content) > 120) ? substr($post->content, 0, 120) : $post->content;
             $post->save();
-            return Redirect::to('admin/dash-board')->with('success','Post is saved!');
-        }
-        else{
+            return Redirect::to('admin/dash-board')->with('success', 'Post is saved!');
+        } else {
             return Redirect::back()->withErrors($valid)->withInput();
         }
     }
 
     public function updatePost(Post $post) {
-        
+        $data = [];
+        $rules = [];
+        $valid = Validator::make($data, $rules);
+        if ($valid->passes()) {
+            $post->title = $data['title'];
+            $post->content = $data['content'];
+            $post->read_more = (strlen($post->content) > 120 ? substr($post->content, 0, 120) : post->content);
+            if (count($post->getDirty()) > 0) /* avoid submission of same content again */ {
+                $post->save();
+                return Redirect::back()->with('success', 'Post is updated!');
+            } else {
+                return Redirect::back()->with('success', 'Nothing to update here !');
+            }
+        } else {
+            return Redirect::back()->withErrors($valid)->withInput();
+        }
     }
 
 }
