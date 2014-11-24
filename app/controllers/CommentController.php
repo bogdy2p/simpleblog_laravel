@@ -9,16 +9,16 @@ class CommentController extends BaseController {
         $this->layout->main = View::make('dash')->nest('content', 'comments.list', compact('comments'));
     }
 
-    public function newComment() {
+    public function newComment(Post $post) {
         $comment = [
             'commenter' => Input::get('commenter'),
             'email' => Input::get('email'),
-            'comment' => Input::get('comment'),  
+            'comment' => Input::get('comment'),
         ];
         $rules = [
-            'commenter'=>'required',
-            'email'=>'required | email',
-            'comment'=>'required',
+            'commenter' => 'required',
+            'email' => 'required | email',
+            'comment' => 'required',
         ];
         $valid = Validator::make($comment, $rules);
         if ($valid->passes()) {
@@ -49,6 +49,7 @@ class CommentController extends BaseController {
     /* functii post */
 
     public function updateComment(Comment $comment) {
+        dd(Input::all());
         $comment->approved = Input::get('status');
         $comment->save();
         $comment->post->comment_count = Comment::where('post_id', '=', $comment->post->id)->where('approved', '=', 1)->count();

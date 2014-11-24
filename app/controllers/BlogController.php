@@ -50,8 +50,10 @@ class BlogController extends BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
     }
-    public function getLogout(){
+
+    public function getLogout() {
         Auth::logout();
         return Redirect::to('/');
     }
+
 }

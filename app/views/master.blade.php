@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         @section('title')
-        <title>{{$title}}</title>
+        <title>{{'VASILE'}}</title>
         @show
         {{ HTML::style('assets/css/foundation.css') }}
         {{ HTML::style('assets/css/custom.css') }}
