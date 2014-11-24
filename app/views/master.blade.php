@@ -38,7 +38,7 @@
                     </nav>
                     <div class="sub-header">
                         <hgroup>
-                            <h1>{{HTML::link('/','Laravel 4 SimpleBlog')}}</h1>
+                            <h1>{{HTML::link('/','Homepage Link')}}</h1>
                             <h2>Laravel 4 Blot toturial</h2>
                         </hgroup>
                     </div>

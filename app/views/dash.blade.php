@@ -3,14 +3,13 @@
         <h3>Menu</h3>
         <ul>
             <li>{{HTML::link('/','Home')}}</li>
-            <li class="divider"></li>
+      
             <li class="{{ (strpos(URL::current(),route('post.new'))!== false)? 'active' : ''}}">
                 {{HTML::linkRoute('post.new','New Post')}}
             </li>
             <li class="{{ (strpos(URL::current(),route('post.list'))!== false)? 'active': ''}}">
                 {{HTML::linkRoute('post.list','List Posts')}}
             </li>
-            <li class="divider"></li>
             <li class="{{ (strpos(URL::current(),route('comment.list'))!== false)? 'active': ''}}">
                 {{HTML::linkRoute('comment.list','List Comments')}}
             </li>
