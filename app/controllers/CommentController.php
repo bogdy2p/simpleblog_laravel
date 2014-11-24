@@ -49,10 +49,10 @@ class CommentController extends BaseController {
     /* functii post */
 
     public function updateComment(Comment $comment) {
-        dd(Input::all());
         $comment->approved = Input::get('status');
         $comment->save();
-        $comment->post->comment_count = Comment::where('post_id', '=', $comment->post->id)->where('approved', '=', 1)->count();
+        $comment->post->comment_count = Comment::where('post_id', '=', $comment->post->id)
+                        ->where('approved', '=', 1)->count();
         $comment->post->save();
         return Redirect::back()->with('success', 'Comment ' . (($comment->approved === 'yes') ? 'Approved' : 'Disapproved'));
     }

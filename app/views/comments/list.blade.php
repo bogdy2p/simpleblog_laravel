@@ -18,7 +18,7 @@
         <td>{{$comment->post->title}}</td>
         <td>
             {{Form::open(['route'=>['comment.update',$comment->id]])}}
-            {{Form::select('status',['no'=>'No','yes'=>'Yes'],$comment->approved,['style'=>'margin-bottom:0','onchange'=>'submit()'])}}
+            {{Form::select('status',['yes'=>'Yes','no'=>'No'],$comment->approved,['style'=>'margin-bottom:0','onchange'=>'submit()'])}}
             {{Form::close()}}
         </td>
         <td>{{HTML::linkRoute('comment.delete','Delete',$comment->id)}}</td>
