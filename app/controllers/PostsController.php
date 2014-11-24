@@ -61,7 +61,7 @@ class PostControler extends BaseController {
         if ($valid->passes()) {
             $post->title = $data['title'];
             $post->content = $data['content'];
-            $post->read_more = (strlen($post->content) > 120 ? substr($post->content, 0, 120) : post->content);
+            $post->read_more = (strlen($post->content) > 120) ? substr($post->content, 0, 120) : $post->content;
             if (count($post->getDirty()) > 0) /* avoid submission of same content again */ {
                 $post->save();
                 return Redirect::back()->with('success', 'Post is updated!');

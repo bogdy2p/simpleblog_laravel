@@ -57,5 +57,3 @@ Route::controller('/', 'BlogController');
 
 
 
-
-)
