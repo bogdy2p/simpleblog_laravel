@@ -8,11 +8,10 @@
         @show
         {{ HTML::style('assets/css/foundation.css') }}
         {{ HTML::style('assets/css/custom.css') }}
-        {{ HTML::script('./assets/js/vendor/custom.modernizr.js') }}
+        {{ HTML::script('./assets/js/vendor/modernizr.js') }}
     </head>
 
     <body>
-
         <div class="row main">
             <div class="small-12 large-12 column" id="masthead">
                 <header>
