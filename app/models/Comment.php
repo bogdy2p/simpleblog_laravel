@@ -1,21 +1,15 @@
 <?php
 
-class Comment extends Eloquent {
+class Comment extends Eloquent
+{
 
-    protected $fillable = ['post_id', 'email', 'commenter', 'comment', 'approved', 'created_at', 'updated_at'];
+    protected $fillable = ['commenter', 'email', 'comment'];
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'comments';
-
-    public function post() {
-
+    public function post()
+    {
         return $this->belongsTo('Post');
     }
-    
+
     public function getApprovedAttribute($approved)
     {
         return (intval($approved) == 1) ? 'yes' : 'no';
