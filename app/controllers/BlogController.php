@@ -18,7 +18,7 @@ class BlogController extends BaseController {
     public function getSearch() {
         $searchTerm = Input::get('s');
         $posts = Post::whereRaw('match(title,content) against(? in boolean mode)', [$searchTerm])->paginate(10);
-        $posts->getFactory->setViewName('pagination::slider');
+        $posts->getFactory()->setViewName('pagination::slider');
         $posts->appends(['s' => $searchTerm]);
         $this->layout->with('title', 'Search: ' . $searchTerm);
         $this->layout->main = View::make('home')
